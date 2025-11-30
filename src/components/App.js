@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import './../styles/App.css';
 
 const App = () => {
-  
+  // State for all dynamic fields
   const [fields, setFields] = useState([{ name: "", age: "" }]);
 
   // Handle input change
@@ -17,22 +16,21 @@ const App = () => {
     setFields([...fields, { name: "", age: "" }]);
   };
 
-  // Remove field
+  // Remove a field
   const removeField = (index) => {
     const newFields = fields.filter((_, i) => i !== index);
     setFields(newFields);
   };
 
-  // Handle form submission
+  // Submit form
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(fields);
-  
+    console.log(fields); // Logs all data
   };
 
   return (
     <div>
-      
+      <h2>Dynamic Form</h2>
       <form onSubmit={handleSubmit}>
         {fields.map((field, index) => (
           <div key={index} style={{ marginBottom: "10px" }}>
@@ -61,8 +59,9 @@ const App = () => {
           </div>
         ))}
 
+        {/* Button text changed to match Cypress tests */}
         <button type="button" onClick={addField}>
-          Add More Fields
+          Add More..
         </button>
 
         <button type="submit" style={{ marginLeft: "10px" }}>
